@@ -524,90 +524,39 @@ body.search-has-text #raffles{ display:none !important; }
   box-shadow: 0 4px 10px rgba(255, 109, 0, 0.3);
 }
 
-/* =========================================================
-   🚀 VIP PREMIUM EDITION - EFECTO TITANIO / OBSIDIANA 3D
-   ========================================================= */
-
 .raffle {
-  position: relative !important;
-  border-radius: 22px !important;
-  /* Fondo base oscuro tipo titanio pulido */
-  background: linear-gradient(145deg, #2D3748 0%, #1A202C 100%) !important;
-  border: 1px solid rgba(255,255,255,0.08) !important;
-  /* Sombra exterior pesada + luces interiores para volumen 3D de hardware real */
-  box-shadow: 
-    0 15px 35px rgba(0,0,0,0.15),           /* Sombra principal suave */
-    0 5px 15px rgba(0,0,0,0.1),            /* Sombra de proximidad */
-    inset 0 2px 3px rgba(255,255,255,0.2), /* Brillo superior (Bisel) */
-    inset 0 -4px 6px rgba(0,0,0,0.4) !important; /* Sombra inferior interna */
-  overflow: visible !important; /* Necesario para que el aura exterior no se corte */
-  z-index: 1;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; /* Efecto rebote suave */
+  --size: clamp(92px, 26vw, 124px);
+  width: var(--size);
+  height: calc(var(--size) + 16px);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-weight: 900;
+  color: var(--ink);
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06), inset 0 0 0 1px rgba(0,0,0,.08);
+  outline: none;
+  cursor: pointer;
+  border: none;
+  transform: translateZ(0);
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background 0.2s ease;
 }
 
-/* 🌟 EL AURA BRILLANTE (El halo holográfico debajo del cuadro) */
-.raffle::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: -4px !important; /* Se expande por fuera del botón */
-  border-radius: 26px !important;
-  /* Combinamos tus colores de marca (Cyan, Verde, Naranja) para el aura */
-  background: linear-gradient(135deg, rgba(3,169,244,0.4), rgba(0,200,83,0.1), rgba(255,109,0,0.4)) !important;
-  filter: blur(10px) !important;
-  opacity: 0.6 !important;
-  z-index: -1 !important;
-  transition: all 0.4s ease !important;
-  display: block !important;
+.raffle .num { position: relative; z-index: 2; font-size: clamp(38px,8.5vw,48px); line-height: 1;
+  text-shadow: none; }
+.raffle::before { 
+  content: ""; position: absolute; inset: -1px; border-radius: inherit;
+  padding: 4px; background: rgba(0,0,0,0.03); 
+  -webkit-mask: linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); 
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 1; 
 }
-
-/* ✨ REFLEJO DE CRISTAL SUPERIOR (El brillo curvo en la superficie de la app) */
-.raffle::after {
-  content: "" !important;
-  position: absolute !important;
-  top: 2px !important;
-  left: 2px !important;
-  right: 2px !important;
-  height: 45% !important;
-  border-radius: 20px 20px 8px 8px !important;
-  background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%) !important;
-  pointer-events: none !important;
-  z-index: 0 !important;
-  display: block !important;
-}
-
-/* 🔢 EL NÚMERO: METÁLICO Y EN RELIEVE (Embossed Effect) */
-.raffle .num {
-  position: relative !important;
-  z-index: 2 !important;
-  font-weight: 1000 !important;
-  /* Pinta el texto con un gradiente de metal oscuro en lugar de un color sólido */
-  background: linear-gradient(180deg, #A0AEC0 0%, #1A202C 100%) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important; /* Fallback */
-  /* Sombra clara arriba/izquierda, sombra oscura abajo/derecha para engañar al ojo y crear relieve 3D */
-  text-shadow: 
-    -1px -1px 1px rgba(255,255,255,0.15), 
-    2px 2px 5px rgba(0,0,0,0.6) !important;
-}
-
-/* 🖱️ EFECTO HOVER: FLOTACIÓN MAGNÉTICA */
-.raffle:hover {
-  transform: translateY(-5px) scale(1.04) !important;
-  box-shadow: 
-    0 22px 45px rgba(0,0,0,0.2), 
-    0 8px 20px rgba(0,0,0,0.15), 
-    inset 0 2px 5px rgba(255,255,255,0.3), 
-    inset 0 -4px 6px rgba(0,0,0,0.5) !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
-}
-
-/* El aura se ilumina al pasar el dedo o el ratón */
-.raffle:hover::before {
-  opacity: 1 !important;
-  filter: blur(14px) !important;
-  inset: -6px !important;
+.raffle::after { 
+  content: ""; position: absolute; inset: 2px; border-radius: 14px;
+  background: radial-gradient(60% 60% at 50% 10%, rgba(255,255,255,1), transparent 100%); z-index: 0;
 }
 
 .raffle.tap-effect {
@@ -1714,37 +1663,46 @@ header{
 }
 
 #raffles{gap:14px !important;}
-.raffle{
+.raffle {
   border-radius: 20px !important;
-  /* Gradiente plata/perla que contrasta elegantemente con el blanco puro y el negro */
-  background: linear-gradient(145deg, #F8FAFC 0%, #E2E8F0 100%) !important;
-  /* Sombra envolvente 3D: sombra exterior suave + doble brillo interior */
+  /* Gradiente "Cerámica Premium": un blanco inmaculado que cae a un perla muy sutil */
+  background: linear-gradient(145deg, #FFFFFF 0%, #F1F5F9 50%, #E2E8F0 100%) !important;
+  /* Iluminación física 3D estricta (no afecta el tamaño de la caja) */
   box-shadow: 
-    0 8px 20px rgba(0, 0, 0, 0.08), 
-    inset 2px 2px 6px rgba(255, 255, 255, 0.9), 
-    inset -2px -2px 6px rgba(0, 0, 0, 0.04) !important;
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+    6px 6px 16px rgba(0, 0, 0, 0.06),          /* Sombra proyectada principal (da altura) */
+    -4px -4px 12px rgba(255, 255, 255, 0.9),   /* Luz de contra (hace que el botón "salga" del fondo blanco) */
+    inset 1px 1px 2px rgba(255, 255, 255, 1),  /* Bisel superior brillante (cristal) */
+    inset -1px -1px 3px rgba(0, 0, 0, 0.05) !important; /* Bisel inferior oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
-.raffle::before{
+
+.raffle::before {
   background: none !important;
 }
-.raffle::after{
+
+.raffle::after {
   background: none !important;
 }
-.raffle .num{
+
+.raffle .num {
   font-weight: 1000 !important;
   color: var(--ink) !important;
-  /* Un ligero relieve blanco al número para que resalte aún más sobre el gris */
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8) !important;
+  /* Efecto de número "Grabado con láser" (Letterpress) */
+  text-shadow: 
+    0px 2px 3px rgba(0, 0, 0, 0.1),            /* Profundidad oscura dentro del número */
+    1px 1px 0px rgba(255, 255, 255, 1) !important; /* Luz rebotando en el filo del grabado */
 }
-.raffle:hover{
-  transform: translateY(-4px) scale(1.02);
-  /* La sombra se expande al pasar el cursor para dar sensación de flotabilidad */
+
+.raffle:hover {
+  /* Elevación controlada y muy corta para no desencajar la cuadrícula */
+  transform: translateY(-2px) !important;
+  /* La luz y la sombra se difuminan al "flotar" el botón */
   box-shadow: 
-    0 14px 28px rgba(0, 0, 0, 0.12), 
-    inset 2px 2px 6px rgba(255, 255, 255, 1), 
-    inset -2px -2px 6px rgba(0, 0, 0, 0.06) !important;
+    8px 12px 24px rgba(0, 0, 0, 0.08), 
+    -6px -6px 16px rgba(255, 255, 255, 1),
+    inset 1px 1px 2px rgba(255, 255, 255, 1),
+    inset -1px -1px 3px rgba(0, 0, 0, 0.03) !important;
 }
 .raffle.tap-effect{
   box-shadow: inset 0 2px 8px rgba(0,0,0,0.05) !important;
