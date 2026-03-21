@@ -1663,56 +1663,25 @@ header{
 }
 
 #raffles{gap:14px !important;}
-..raffle {
-  border-radius: 20px !important;
-  /* FONDO DEFINIDO: Un tono Acero/Plata oscuro, absolutamente nada de blanco */
-  background: linear-gradient(145deg, #D1D5DB 0%, #9CA3AF 100%) !important;
-  
-  /* MARCO BLANCO GROSOR 3px: Crea una frontera nítida entre el cuadro gris y el fondo de tu app */
-  border: 3px solid #FFFFFF !important;
-  
-  /* SOMBRA PESADA 3D: Lo despega del fondo para que parezca una ficha de casino real */
-  box-shadow: 
-    0 10px 20px rgba(0, 0, 0, 0.15), 
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    inset 2px 2px 6px rgba(255, 255, 255, 0.6),
-    inset -2px -2px 6px rgba(0, 0, 0, 0.2) !important;
-  
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+.raffle{
+  border-radius:20px !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,.06), inset 0 0 0 1px rgba(0,0,0,.08) !important;
 }
-
-.raffle::before {
+.raffle::before{
   background: none !important;
 }
-
-.raffle::after {
+.raffle::after{
   background: none !important;
 }
-
-.raffle .num {
-  font-weight: 1000 !important;
-  color: var(--ink) !important; /* Mantenemos el número negro oscuro */
-  
-  /* STROKE BLANCO Y SOMBRA: Rodea el número negro con luz blanca para que no se pierda en el acero */
-  text-shadow: 
-    -1px -1px 0 #FFFFFF,  
-     1px -1px 0 #FFFFFF,
-    -1px  1px 0 #FFFFFF,
-     1px  1px 0 #FFFFFF,
-     2px  4px 6px rgba(0,0,0,0.4) !important;
+.raffle .num{
+  font-weight:1000 !important;
+  text-shadow:none !important;
+  color: var(--ink) !important;
 }
-
-.raffle:hover {
-  /* Elevación segura que no deforma tu grilla */
-  transform: translateY(-4px) !important;
-  
-  /* Efecto de luz al pasar el cursor o tocar */
-  background: linear-gradient(145deg, #E5E7EB 0%, #9CA3AF 100%) !important;
-  box-shadow: 
-    0 15px 25px rgba(0, 0, 0, 0.2), 
-    0 8px 10px rgba(0, 0, 0, 0.1),
-    inset 2px 2px 8px rgba(255, 255, 255, 0.8),
-    inset -2px -2px 8px rgba(0, 0, 0, 0.3) !important;
+.raffle:hover{
+  transform:translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,.08), inset 0 0 0 1px rgba(0,0,0,.1) !important;
 }
 .raffle.tap-effect{
   box-shadow: inset 0 2px 8px rgba(0,0,0,0.05) !important;
