@@ -2925,7 +2925,24 @@ function renderBranchSelector(branches){
   if(logo) logo.src = window.__CONFIG_LOGO || document.getElementById('logoImg')?.src || '';
   
   // Asigna el nombre de la empresa al lado del logo
-  if(title) title.textContent = window.__CONFIG_NAME || 'RIFAS';
+  if(title) {
+    const nombreEmpresa = window.__CONFIG_NAME || 'RIFAS';
+    title.textContent = nombreEmpresa;
+    
+    // 🔥 MAGIA PRO: Ajuste de tamaño dinámico según cantidad de letras
+    const totalLetras = nombreEmpresa.length;
+    
+    if (totalLetras <= 12) {
+      // Nombres muy cortos (Ej: "RIFAS LA 37") -> Letra Gigante
+      title.style.fontSize = 'clamp(28px, 8vw, 44px)';
+    } else if (totalLetras <= 25) {
+      // Nombres medianos -> Letra Mediana
+      title.style.fontSize = 'clamp(20px, 6vw, 32px)';
+    } else {
+      // Nombres muy largos (Ej: "RIFAS DEL RUIZ E INVERSIONES...") -> Letra Pequeña
+      title.style.fontSize = 'clamp(15px, 4.5vw, 22px)';
+    }
+  }
 
   if(grid){
     grid.className = 'branch-grid' + (BRANCHES.length === 1 ? ' one' : '');
